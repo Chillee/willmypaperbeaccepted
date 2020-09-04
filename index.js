@@ -41,7 +41,7 @@ let closeModel = {
     mean: tf.tensor([5.9589491, 3.70114943]),
     variance: tf.tensor([1.08698477, 0.67368779])
 };
-let fullModel = {
+let closerModel = {
 lin1: tf.tensor([[ 0.1278,  0.4197],
         [-0.2713,  0.4527],
         [-0.3134,  0.8376],
@@ -154,8 +154,7 @@ function initSliders() {
     }
     function updFunction() {
         const data = getData();
-        const prob = (get_prob(data, closeModel) + get_prob(data, fullModel))/2.0;
-        console.log(get_prob(data, closeModel) , get_prob(data, fullModel));
+        const prob = (get_prob(data, closeModel) + get_prob(data, closerModel))/2.0;
         updatePage(prob);
     }
     for (let rating of ratings) {
