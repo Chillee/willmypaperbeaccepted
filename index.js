@@ -41,6 +41,46 @@ let closeModel = {
     mean: tf.tensor([5.9589491, 3.70114943]),
     variance: tf.tensor([1.08698477, 0.67368779])
 };
+let fullModel = {
+    lin1: tf.tensor([[-0.2452, 0.1776],
+    [0.8782, -0.4691],
+    [0.8423, -0.2451],
+    [-0.5410, 0.5914],
+    [-0.8162, -0.1508],
+    [0.2367, 0.0086],
+    [0.9297, -0.1585],
+    [0.5735, 0.3087],
+    [0.7918, -0.1871],
+    [-0.1215, 0.0740],
+    [-0.6670, 0.6221],
+    [-0.9716, 0.3117],
+    [-0.5104, -0.4767],
+    [-0.2594, -0.7813],
+    [0.7132, 0.4168],
+    [-0.5183, -0.6321],
+    [0.4532, -0.3750],
+    [-0.5699, 0.3726],
+    [0.6322, -0.2175],
+    [0.7871, -0.0623],
+    [0.7866, -0.0792],
+    [0.8779, 0.2440],
+    [-0.3661, 0.3980],
+    [0.6781, -0.4053],
+    [0.3276, 0.0829]]), lin1_bias: tf.tensor([0.7070, -0.3538, 0.3259, 0.0037, 0.0752, -0.6683, -0.2003, 0.3196,
+        0.0667, -0.5051, -0.0536, 0.4716, 0.1371, 0.8101, 0.4177, -0.1057,
+        -0.2481, 0.0226, -0.0101, -0.2215, -0.2732, -0.0483, 0.1117, -0.2737,
+        -0.5890]), lin2: tf.tensor([[0.2269, -0.2905, -0.3318, 0.3023, 0.0336, 0.1072, -0.2723, -0.2431,
+            -0.1504, -0.1832, 0.2540, 0.3430, 0.3008, 0.1033, -0.1363, 0.2912,
+            -0.0062, 0.3716, -0.0911, -0.3765, -0.2824, -0.3078, 0.4614, -0.2583,
+            0.0463],
+        [-0.2702, 0.0105, 0.4035, -0.2453, -0.2687, -0.0329, 0.2157, 0.1413,
+            0.2884, -0.0041, -0.1289, -0.0709, -0.2909, -0.2973, 0.2175, -0.3471,
+            0.1323, -0.3440, 0.0720, 0.3093, 0.0502, 0.3133, -0.2455, 0.2585,
+        -0.0952]]), lin2_bias: tf.tensor([0.3264, -0.2709]),
+    mean: tf.tensor([5.44976315, 3.76464722]),
+    variance: tf.tensor([2.19262709, 0.67709473]),
+};
+
 
 
 
@@ -113,17 +153,16 @@ function initSliders() {
             }
         });
     }
+    function updFunction() {
+        const data = getData();
+        const prob = (get_prob(data, closeModel) + get_prob(data, fullModel))/2;
+        updatePage(prob);
+    }
     for (let rating of ratings) {
-        rating.noUiSlider.on('update', function () {
-            const prob = get_prob(getData(), closeModel);
-            updatePage(prob);
-        });
+        rating.noUiSlider.on('update', updFunction);
     }
     for (let conf of confs) {
-        conf.noUiSlider.on('update', function () {
-            const prob = get_prob(getData(), closeModel);
-            updatePage(prob);
-        });
+        conf.noUiSlider.on('update',updFunction);
     }
 }
 
@@ -137,7 +176,7 @@ function htmlToElement(html) {
 function addReview() {
     let reviews = document.getElementById('reviews');
     let newReview = htmlToElement(' <div class="flex-container"> <div class="rating flex-child"></div> <div class="confidence flex-child"></div> </div>');
-    reviews.appendChild(document.createTextNode('Review ' + (ratings.length + 1) +': '));
+    reviews.appendChild(document.createTextNode('Review ' + (ratings.length + 1) + ': '));
     reviews.appendChild(newReview);
     reviews.appendChild(htmlToElement('<br>'));
     reviews.appendChild(htmlToElement('<br>'));
