@@ -1,0 +1,19 @@
+.flex-container {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+}
+
+.flex-child:first-child {
+    margin-right: 20px;
+}body {
+    margin: 40px auto !important;
+    max-width: 900px;
+    line-height: 1.6;
+    font-size: 18px;
+    color: #444;
+    padding: 0 10px;
+    font-family: Palatino,"Palatino Linotype","Palatino LT STD","Book Antiqua",Cambria,Georgia,serif;
+}

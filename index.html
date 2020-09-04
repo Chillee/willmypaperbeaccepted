@@ -1,0 +1,54 @@
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.1/nouislider.min.js" integrity="sha512-vW4D1Qqu6IlAG2JKqtE1hxCZyGtzJf8LVBax66gAJhn0zsesNvaq7laQWViwBWntK8gYELbvFpok8h+m86LrJQ==" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.1/nouislider.css" integrity="sha512-B5co6A9LCcgglezjzkGU6FKlTo/dTQuSqItsfBpo6KMgbuKEPdiDgt5j2oKt8Q+Mob4P96LN5+rYVweKodEszQ==" crossorigin="anonymous" />
+
+<link rel="stylesheet" type="text/css" href="index.css">
+
+
+<h1> Will My (NeurIPS?) Paper get Accepted? </h1>
+This uses a simple set model (1 layer shared across all elements, a nonlinearity, and another layer after mean aggregation), trained on ICLR 2019 data. The overall statistics (average accepted rating) match up very well with <a href='https://medium.com/@NeurIPSConf/what-we-learned-from-neurips-2019-data-111ab996462c'>NeurIPS 2019 data</a>, so I suspect it should be a reasonable proxy for NeurIPS 2020 data. Of course, this model can't take into account your specific situation, so don't read too much into it :)
+
+
+<body>
+<div id="reviews">
+Review 1:
+<div class="flex-container">
+    <div class="rating flex-child"></div>
+    <div class="confidence flex-child"></div>
+</div>
+<br>
+<br>
+
+
+Review 2:
+<div class="flex-container">
+    <div class="rating flex-child"></div>
+    <div class="confidence flex-child"></div>
+</div>
+<br>
+<br>
+
+Review 3:
+<div class="flex-container">
+    <div class="rating flex-child"></div>
+    <div class="confidence flex-child"></div>
+</div>
+<br>
+<br>
+</div>
+<br>
+<button onclick="addReview()">Add Review</button>
+
+
+<h1>
+<div id="accept_prob">
+</div>
+<div id="accept_text">
+</div>
+</h1>
+
+</body>
+
+<script src="index.js"></script>
